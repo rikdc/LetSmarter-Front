@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { DataService, Property, ConfigService } from '../shared/'
 
@@ -12,14 +13,20 @@ import { DataService, Property, ConfigService } from '../shared/'
 export class PropertyListComponent implements OnInit {
 
   constructor(
+    private router: Router,
     private dataService: DataService
   ) { }
 
   private properties: Property[];
+  private selectedProperty; Property;
 
   ngOnInit() {
     this.dataService.getProperties().subscribe(p => {
       this.properties = p;
     });
+  }
+
+  onSelect(property: Property) {
+    this.router.navigate(['/property', property.id]);
   }
 }
