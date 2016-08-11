@@ -7,21 +7,26 @@ import {MdButtonModule} from "@angular2-material/button";
 import {MdIconModule} from "@angular2-material/icon";
 import {SampleComponent} from "./sample/sample.component";
 
+import { DataService, ConfigService }  from './shared';
+
 import { PropertyListComponent } from './property-list/';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SampleComponent
+    SampleComponent,
+    PropertyListComponent
   ],
-  providers: [],
-  imports:      [
+  providers: [
+    DataService, ConfigService
+  ],
+  imports: [
     BrowserModule,
     HttpModule,
     MdCardModule,
     MdButtonModule,
     MdIconModule
   ],
-  bootstrap:    [AppComponent],
+  bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

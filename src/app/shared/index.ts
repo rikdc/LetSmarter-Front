@@ -1,1 +1,3 @@
-export * from './Config.service';
+export * from './config.service';
+export * from './property';
+export * from './data.service'

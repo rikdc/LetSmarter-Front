@@ -1,3 +1,9 @@
-<p>
-  property-list works!
-</p>
+
+<ul class="properties">
+  <li *ngFor="let property of properties">
+    <span class="hero-element">
+      <span class="badge">{{property.id}}</span> {{property.addressLine1}}
+    </span>
+    <button class="delete-button">Delete</button>
+  </li>
+</ul>
