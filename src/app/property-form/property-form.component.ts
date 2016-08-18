@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { DataService, Property, ConfigService } from '../shared/'
+import { Property, ConfigService } from '../shared/'
 
 @Component({
   selector: 'app-property-form',
@@ -11,14 +11,16 @@ import { DataService, Property, ConfigService } from '../shared/'
 export class PropertyFormComponent implements OnInit {
 
   constructor(
-    private dataService: DataService,
     private route: ActivatedRoute
   ) { }
 
   @Input() property: Property;
 
+  @Output() onSave = new EventEmitter();
+  @Output() onCancel = new EventEmitter();
+
   ngOnInit() {
-    this.route.params.forEach((params: Params) => {
+    /*this.route.params.forEach((params: Params) => {
       if (params['id'] !== undefined) {
         let id = +params['id'];
         this.dataService.getProperty(id)
@@ -26,7 +28,14 @@ export class PropertyFormComponent implements OnInit {
       } else {
         this.property = new Property();
       }
-    });
+    });*/
   }
 
+  save() {
+    this.onSave.emit(this.property);
+  }
+
+  cancel() {
+    this.onCancel.emit(this.property);
+  }
 }

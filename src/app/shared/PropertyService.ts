@@ -10,7 +10,7 @@ import { Property } from '../shared';
 import { ConfigService } from './config.service';
 
 @Injectable()
-export class DataService {
+export class PropertyService {
   protected _baseUrl = 'app/';  // URL to web api
 
   private headers: Headers;
@@ -38,6 +38,14 @@ export class DataService {
         return res.json();
       })
       .catch(this.handleObservableError);
+  }
+
+  doSomething() {
+    return true;
+  }
+
+  remove(property: Property): Observable<Response> {
+    return this.http.delete(this._baseUrl + 'property/' + property.id);
   }
 
   save(property: Property): Observable<Property> {

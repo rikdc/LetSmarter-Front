@@ -1,6 +1,6 @@
 export * from './ExpensesService';
 export * from './config.service';
-export * from './data.service'
+export * from './PropertyService'
 export * from './expense';
 export * from './lease';
 export * from './maintenance';

@@ -1,13 +1,17 @@
 
 <ul class="properties">
-  <li *ngFor="let property of properties" (click)="onSelect(property)">
+  <li *ngFor="let property of properties">
+    <a (click)="onSelect(property)">
     <span class="hero-element">
       <span class="badge">{{property.id}}</span> {{property.addressLine1}}
     </span>
-    <button class="delete-button">Delete</button>
+    </a>
+    <button class="delete-button" (click)="deleteProperty(property)">Delete</button>
   </li>
 </ul>
 
 <hr />
 
-<app-property-form></app-property-form>
+<button (click)="addNew()">Add Property</button>
+
+<app-property-form (onSave)="saveProperty()" (onCancel)="cancelAddNew()" [property]="selectedProperty"></app-property-form>

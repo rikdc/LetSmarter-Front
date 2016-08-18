@@ -1,3 +1,22 @@
-<p>
-  property-form works!
-</p>
+<div *ngIf="property">
+  <h3>{{property.addressLine1}}</h3>
+  <div>
+    <label>Id: </label>{{property.id}}</div>
+  <div>
+    <label>Address: </label>
+    <input [(ngModel)]="property.addressLine1" placeholder="name" />
+  </div>
+  <div>
+    <label>Address (cont): </label>
+    <input [(ngModel)]="property.addressLine2" placeholder="name" />
+  </div>
+  <div>
+    <label>Postcode: </label>
+    <input [(ngModel)]="property.postcode" placeholder="name" />
+  </div>
+  <p>
+    <button (click)="cancel()">Cancel</button> <button (click)="save()">Save</button>
+  </p>
+
+
+</div>

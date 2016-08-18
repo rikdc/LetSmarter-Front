@@ -14,12 +14,15 @@ import {SampleComponent} from "./sample/sample.component";
 import '@angular2-material/core/overlay/overlay.css';
 import '@angular2-material/core/style/core.css';
 
-import { DataService, ExpensesService, MaintenanceService, ConfigService }  from './shared';
+import { PropertyService, ExpensesService, MaintenanceService, ConfigService }  from './shared';
 
 import { PropertyListComponent } from './property-list/';
 import { PropertyFormComponent } from './property-form/';
 import { PropertyTenantsListComponent } from './property-tenants-list';
+import { ScheduleComponent } from './property-detail/schedule';
 import { MaintenanceListComponent } from './maintenance-list';
+
+import {PaginatePipe, PaginationControlsCmp, PaginationService} from 'ng2-pagination';
 
 @NgModule({
   declarations: [
@@ -28,10 +31,12 @@ import { MaintenanceListComponent } from './maintenance-list';
     PropertyListComponent,
     PropertyFormComponent,
     PropertyTenantsListComponent,
-    MaintenanceListComponent
+    ScheduleComponent,
+    MaintenanceListComponent,
+    PaginatePipe, PaginationControlsCmp
   ],
   providers: [
-    DataService, ExpensesService, MaintenanceService, ConfigService
+    PropertyService, ExpensesService, MaintenanceService, ConfigService, PaginationService
   ],
   imports: [
     BrowserModule,
