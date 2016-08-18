@@ -1,5 +1,16 @@
 <h1>
   {{title}}
 </h1>
-
-<router-outlet></router-outlet>
+<md-sidenav md-component-id="myId" class="md-sidenav-left">
+  <nav>
+    <a routerLink="/dashboard" routerLinkActive="active">Properties</a>
+    <a routerLink="/expenses" routerLinkActive="active">Expenses</a>
+    <a routerLink="/maintenance" routerLinkActive="active">Maintenance</a>
+    <a routerLink="/tenants" routerLinkActive="active">Tenants</a>
+    <a routerLink="/reports" routerLinkActive="active">Reports</a>
+    <a routerLink="/account" routerLinkActive="active">Account</a>
+  </nav>
+</md-sidenav>
+<md-content>
+  <router-outlet></router-outlet>
+</md-content>

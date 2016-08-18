@@ -1,3 +1,14 @@
-<p>
-  property-detail works!
-</p>
+<div *ngIf="property">
+  <h3>{{property.addressLine1}}</h3>
+  <div>
+    <label>Id: </label>{{property.id}}</div>
+  <div>
+    <label>Name: </label>
+    <input [(ngModel)]="property.addressLine1name" placeholder="name" />
+  </div>
+  <p>
+    <button (click)="goBack()">Back</button>
+  </p>
+
+  <app-property-tenants-list></app-property-tenants-list>
+</div>

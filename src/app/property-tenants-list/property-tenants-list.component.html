@@ -1,0 +1,14 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email Address</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tr *ngFor="let tenant of tenants">
+    <td>{{tenant.fullname}}</td>
+    <td>{{tenant.emailAddress}}</td>
+    <td><a (click)="createTenant(tenant)"><i class="fa fa-pencil-square-o pull-right"></i></a></td>
+  </tr>
+</table>

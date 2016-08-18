@@ -24,7 +24,7 @@ export class PropertyListComponent implements OnInit {
     this.dataService.getProperties().subscribe(p => {
       this.properties = p;
     });
-  }
+  };
 
   onSelect(property: Property) {
     this.router.navigate(['/property', property.id]);
