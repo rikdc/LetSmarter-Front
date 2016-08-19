@@ -1,16 +1,51 @@
-<h1>
-  {{title}}
-</h1>
-<md-sidenav md-component-id="myId" class="md-sidenav-left">
-  <nav>
-    <a routerLink="/dashboard" routerLinkActive="active">Properties</a>
-    <a routerLink="/expenses" routerLinkActive="active">Expenses</a>
-    <a routerLink="/maintenance" routerLinkActive="active">Maintenance</a>
-    <a routerLink="/tenants" routerLinkActive="active">Tenants</a>
-    <a routerLink="/reports" routerLinkActive="active">Reports</a>
-    <a routerLink="/account" routerLinkActive="active">Account</a>
-  </nav>
-</md-sidenav>
-<md-content>
-  <router-outlet></router-outlet>
-</md-content>
+<nav class="blue darken-2">
+  <div class="nav-wrapper">
+    <a href="#!" class="brand-logo"><i class="material-icons">cloud</i>Ls ;)</a>
+    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a routerLink="/dashboard" routerLinkActive="active">Properties</a></li>
+      <li><a routerLink="/expenses" routerLinkActive="active">Expenses</a></li>
+      <li><a routerLink="/maintenance" routerLinkActive="active">Maintenance</a></li>
+      <li><a routerLink="/tenants" routerLinkActive="active">Tenants</a></li>
+      <li><a routerLink="/reports" routerLinkActive="active">Reports</a></li>
+      <li><a routerLink="/account" routerLinkActive="active">Account</a></li>
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="badges.html">Components</a></li>
+      <li><a href="collapsible.html">Javascript</a></li>
+      <li><a href="mobile.html">Mobile</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <div class="section">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Footer Content</h5>
+        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Links</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      &copy; 2015 - 2016 Unlimedia
+      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+    </div>
+  </div>
+</footer>

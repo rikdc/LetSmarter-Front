@@ -1,6 +1,6 @@
 
-<ul class="properties">
-  <li *ngFor="let property of properties">
+<ul class="properties collection">
+  <li *ngFor="let property of properties" class="collection-item">
     <a (click)="onSelect(property)">
     <span class="hero-element">
       <span class="badge">{{property.id}}</span> {{property.addressLine1}}

@@ -11,9 +11,6 @@ import {MdButtonModule} from "@angular2-material/button";
 import {MdIconModule} from "@angular2-material/icon";
 import {SampleComponent} from "./sample/sample.component";
 
-import '@angular2-material/core/overlay/overlay.css';
-import '@angular2-material/core/style/core.css';
-
 import { PropertyService, ExpensesService, MaintenanceService, ConfigService }  from './shared';
 
 import { PropertyListComponent } from './property-list/';
@@ -23,6 +20,7 @@ import { ScheduleComponent } from './property-detail/schedule';
 import { MaintenanceListComponent } from './maintenance-list';
 
 import {PaginatePipe, PaginationControlsCmp, PaginationService} from 'ng2-pagination';
+import {MaterializeDirective} from "angular2-materialize";
 
 @NgModule({
   declarations: [
@@ -33,7 +31,7 @@ import {PaginatePipe, PaginationControlsCmp, PaginationService} from 'ng2-pagina
     PropertyTenantsListComponent,
     ScheduleComponent,
     MaintenanceListComponent,
-    PaginatePipe, PaginationControlsCmp
+    PaginatePipe, PaginationControlsCmp, MaterializeDirective
   ],
   providers: [
     PropertyService, ExpensesService, MaintenanceService, ConfigService, PaginationService
@@ -42,10 +40,7 @@ import {PaginatePipe, PaginationControlsCmp, PaginationService} from 'ng2-pagina
     BrowserModule,
     HttpModule,
     FormsModule,
-    routing,
-    MdCardModule,
-    MdButtonModule,
-    MdIconModule
+    routing
   ],
   bootstrap: [AppComponent],
 })
