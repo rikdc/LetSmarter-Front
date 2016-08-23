@@ -1,23 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { ExpenseFormComponent }     from './expense-form';
 
-import { ExpensesService, Expense, ConfigService } from '../shared/'
+import { ExpensesService, PropertyService, Property, Expense, ConfigService } from '../shared/'
 import {MaterializeDirective} from "angular2-materialize";
 
 @Component({
   selector: 'app-expenses-list',
   templateUrl: 'expenses-list.component.html',
   styleUrls: ['expenses-list.component.css'],
-  providers: [ExpensesService, ConfigService, ExpenseFormComponent],
+  providers: [ExpensesService, PropertyService, ConfigService, ExpenseFormComponent],
   directives: [MaterializeDirective]
 })
 export class ExpensesListComponent implements OnInit {
   constructor(
     private router: Router,
-    private dataService: ExpensesService
+    private dataService: ExpensesService,
+    private propertyService: PropertyService
   ) { }
 
   private expenses: Observable<Expense[]>;
@@ -25,10 +26,23 @@ export class ExpensesListComponent implements OnInit {
   public total: number;
   public page: number;
 
+  private properties: Property[];
+  private propertiesObservable: any;
 
   ngOnInit() {
-    this.getPage(1)
+    this.getPage(1);
+    this.getProperties();
   };
+
+  ngOnDestroy() {
+    this.propertiesObservable.unsubscribe();
+  }
+
+  getProperties() {
+    this.propertiesObservable = this.propertyService.getProperties().subscribe(result => {
+        this.properties = result;
+    });
+  }
 
   getPage(page: number) {
     this.page = page;
@@ -54,6 +68,19 @@ export class ExpensesListComponent implements OnInit {
         this.selectedExpense = null;
         this.getPage(this.page);
       });
+  }
+
+  editExpense(expense) {
+    console.log(expense);
+    this.selectedExpense = expense;
+  }
+
+  removeExpense(expense) {
+    if (confirm("Are you sure you want to delete this expense?")) {
+      this.dataService.remove(expense).subscribe(result => {
+          
+      });
+    }
   }
 
   onSelect(expense: Expense) {

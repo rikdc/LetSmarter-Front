@@ -67,6 +67,10 @@ export class ExpensesService {
     return this.post(expense);
   }
 
+  remove(expense: Expense): Observable<Response> {
+    return this.http.delete(this._baseUrl + 'expenses/' + expense.id);
+  }
+
   private post(expense: Expense): Observable<Expense> {
     return this.http.post(this._baseUrl + 'expenses/', JSON.stringify(expense), { headers: this.headers })
       .map((res: Response) => {

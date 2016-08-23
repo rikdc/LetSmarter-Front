@@ -2,7 +2,7 @@
   <div class="ibox-title">
     <h5>Expenses</h5>
   </div>
-  <app-expense-form [expense]="selectedExpense" (onCancel)="onCancel()" (onSave)="addExpense()"></app-expense-form>
+  <app-expense-form [expense]="selectedExpense" [properties]="properties" (onCancel)="onCancel()" (onSave)="addExpense()"></app-expense-form>
   <div class="ibox-content">
     <div class="row" *ngIf="expenses.length == 0">
       <p>You have no recorded expenses. Add them here to track your spending.</p>
@@ -35,8 +35,8 @@
 
             <!-- Dropdown Structure -->
             <ul id='dropdown1' class='dropdown-content'>
-              <li><a (click)="onSelect(property)">Edit</a></li>
-              <li><a (click)="deleteProperty(property)">Delete</a></li>
+              <li><a (click)="editExpense(expense)">Edit</a></li>
+              <li><a (click)="removeExpense(expense)">Delete</a></li>
             </ul>
           </div>
         </td>
@@ -46,3 +46,15 @@
   </div>
 </div>
 <hr />
+<!-- Modal Trigger -->
+<a materialize="leanModal" [materializeParams]="[{dismissible: false}]" class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <p>A bunch of text</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>

@@ -1,17 +1,21 @@
 <div *ngIf="expense">
-
-  {{expense | json}}
   <div>
     <label>Recipient: </label>
-    <input [(ngModel)]="expense.recipient" placeholder="name" />
+    <input [(ngModel)]="expense.recipient" placeholder="name" name="recipient" />
   </div>
   <div>
     <label>Amount: </label>
-    <input [(ngModel)]="expense.amount" placeholder="name" />
+    <input [(ngModel)]="expense.amount" placeholder="Amount" name="amount" />
+  </div>
+  <div>
+    <label>Property:</label>
+    <select materialize="material_select" [materializeSelectOptions]="selectOptions" [(ngModel)]="expense.propertyId">
+      <option *ngFor="let option of properties" [value]="option.id">{{option.addressLine1}}</option>
+    </select>
   </div>
   <div>
     <label>Due Date: </label>
-    <input [(ngModel)]="expense.dueDate" placeholder="name" />
+    <datepicker [(ngModel)]="expense.dueDate"></datepicker>
   </div>
   <p>
     <button (click)="cancel()">Cancel</button> <button (click)="save()">Save</button>
