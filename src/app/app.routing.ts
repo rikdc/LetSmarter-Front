@@ -7,6 +7,7 @@ import { ExpensesListComponent }     from './expenses-list';
 import { ExpenseDetailsComponent }     from './expense-details';
 
 import { MaintenanceListComponent } from './maintenance-list';
+import { TenantsListComponent } from './tenants-list';
 
 const appRoutes: Routes = [
   {
@@ -33,6 +34,10 @@ const appRoutes: Routes = [
   {
     path: 'maintenance',
     component: MaintenanceListComponent
+  },
+    {
+    path: 'tenants',
+    component: TenantsListComponent
   },
 ];
 

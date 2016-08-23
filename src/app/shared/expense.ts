@@ -4,6 +4,6 @@ export class Expense {
     public amount: number;
     public dueDate: Date;
     public paidDate: Date;
-    public reference: string;
+    public recipient: string;
     public notes: string;
 }

@@ -1,17 +1,25 @@
+<div class="row">
+  <a class="btn-floating btn-large waves-effect waves-light red right" (click)="addNew()"><i class="material-icons">add</i></a>
+</div>
+<div class="row">
+  <ul class="properties collection">
+    <li *ngFor="let property of properties" class="collection-item">
+      <a (click)="onSelect(property)">{{property.addressLine1}}</a>
+      <div class="secondary-content">
+        <!-- Dropdown Trigger -->
+        <a materialize="dropdown" class='dropdown-button' href='#' data-activates='dropdown1'><i class="material-icons right">more_vert</i></a>
 
-<ul class="properties collection">
-  <li *ngFor="let property of properties" class="collection-item">
-    <a (click)="onSelect(property)">
-    <span class="hero-element">
-      <span class="badge">{{property.id}}</span> {{property.addressLine1}}
-    </span>
-    </a>
-    <button class="delete-button" (click)="deleteProperty(property)">Delete</button>
-  </li>
-</ul>
+        <!-- Dropdown Structure -->
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><a (click)="onSelect(property)">Edit</a></li>
+          <li><a (click)="deleteProperty(property)">Delete</a></li>
+        </ul>
+      </div>
 
-<hr />
+    </li>
+  </ul>
 
-<button (click)="addNew()">Add Property</button>
+  <hr />
 
-<app-property-form (onSave)="saveProperty()" (onCancel)="cancelAddNew()" [property]="selectedProperty"></app-property-form>
+  <app-property-form (onSave)="saveProperty()" (onCancel)="cancelAddNew()" [property]="selectedProperty"></app-property-form>
+</div>

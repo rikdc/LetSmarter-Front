@@ -1,0 +1,19 @@
+<div *ngIf="expense">
+
+  {{expense | json}}
+  <div>
+    <label>Recipient: </label>
+    <input [(ngModel)]="expense.recipient" placeholder="name" />
+  </div>
+  <div>
+    <label>Amount: </label>
+    <input [(ngModel)]="expense.amount" placeholder="name" />
+  </div>
+  <div>
+    <label>Due Date: </label>
+    <input [(ngModel)]="expense.dueDate" placeholder="name" />
+  </div>
+  <p>
+    <button (click)="cancel()">Cancel</button> <button (click)="save()">Save</button>
+  </p>
+</div>

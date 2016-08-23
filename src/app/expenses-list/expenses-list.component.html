@@ -1,21 +1,48 @@
 <div class="ibox">
   <div class="ibox-title">
     <h5>Expenses</h5>
-    <div class="ibox-tools">
-      <a class="btn btn-primary btn-xs">Add an Expense</a>
-    </div>
   </div>
+  <app-expense-form [expense]="selectedExpense" (onCancel)="onCancel()" (onSave)="addExpense()"></app-expense-form>
   <div class="ibox-content">
-    <div class="row" *ngIf="expenses && !expenses.length">
+    <div class="row" *ngIf="expenses.length == 0">
       <p>You have no recorded expenses. Add them here to track your spending.</p>
     </div>
-    <ul materialize="collapsible" class="collapsible popout" data-collapsible="accordion">
-      <li *ngFor="let expense of expenses; let i = index">
-        <div class="collapsible-header active"><i class="material-icons">filter_drama</i>{{expense.recipient}}</div>
-        <div class="collapsible-body">
-            <p>{{expense | json}}
-        </div>
-      </li>
-    </ul>
+    <a (click)="addNew()" class="btn-floating btn-large waves-effect waves-light btn modal-trigger"><i class="material-icons">add</i></a>
+
+    <p>
+      {{total}} records</p>
+    <table class="bordered striped highlight">
+      <thead>
+        <tr>
+          <th>Recipient</th>
+          <th>Category</th>
+          <th>Amount</th>
+          <th>Due Date</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tr *ngFor="let expense of expenses | async | paginate: { id: 'server', itemsPerPage: 15, currentPage: page, totalItems: total }">
+        <td>{{expense.recipient}}</td>
+        <td>
+          <p>{{expense.additionalNotes}}</p>
+        </td>
+        <td>{{expense.amount}}</td>
+        <td>{{expense.dueDate}}</td>
+        <td>
+          <div class="right-align">
+            <!-- Dropdown Trigger -->
+            <a materialize="dropdown" class='dropdown-button' href='#' data-activates='dropdown1'><i class="material-icons right">more_vert</i></a>
+
+            <!-- Dropdown Structure -->
+            <ul id='dropdown1' class='dropdown-content'>
+              <li><a (click)="onSelect(property)">Edit</a></li>
+              <li><a (click)="deleteProperty(property)">Delete</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
   </div>
 </div>
+<hr />

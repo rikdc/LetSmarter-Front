@@ -5,6 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
 
 import { Property, Expense, PropertyService } from '../shared';
 import { ConfigService } from './config.service';
@@ -25,7 +26,7 @@ export class ExpensesService {
     this.headers.append('Accept', 'application/json');
   }
 
-    protected handleObservableError(error: any) {
+  protected handleObservableError(error: any) {
     var applicationError = error.headers.get('Application-Error');
     var serverError = error.json();
     var modelStateErrors: string = '';
@@ -46,8 +47,36 @@ export class ExpensesService {
     return Observable.throw(applicationError || modelStateErrors || 'Server error');
   }
 
-  getExpenses(): Observable<Expense[]> {
-    return this.http.get(this._baseUrl + 'expenses')
+  public total: number;
+  getExpenses(page: number): Observable<Expense[]> {
+    return this.http.get(this._baseUrl + 'expenses?pageIndex=' + page)
+      .do((res: any) => {
+        this.total = res.json().total
+      })
+      .map((res: Response) => {
+        return res.json().results;
+      })
+      .catch(this.handleObservableError);
+  };
+
+
+  save(expense: Expense): Observable<Expense> {
+    if (expense.id) {
+      return this.put(expense);
+    }
+    return this.post(expense);
+  }
+
+  private post(expense: Expense): Observable<Expense> {
+    return this.http.post(this._baseUrl + 'expenses/', JSON.stringify(expense), { headers: this.headers })
+      .map((res: Response) => {
+        return res.json();
+      })
+      .catch(this.handleObservableError);
+  }
+
+  private put(expense: Expense) {
+    return this.http.put(this._baseUrl + 'expenses/', JSON.stringify(expense), { headers: this.headers })
       .map((res: Response) => {
         return res.json();
       })

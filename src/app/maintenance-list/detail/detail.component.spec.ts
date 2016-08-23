@@ -3,11 +3,11 @@
 import { By }           from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { addProviders, async, inject } from '@angular/core/testing';
-import { MaintainanceListComponent } from './maintainance-list.component';
+import { DetailComponent } from './detail.component';
 
-describe('Component: MaintainanceList', () => {
+describe('Component: Detail', () => {
   it('should create an instance', () => {
-    let component = new MaintainanceListComponent();
+    let component = new DetailComponent();
     expect(component).toBeTruthy();
   });
 });
