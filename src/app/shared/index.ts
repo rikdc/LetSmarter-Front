@@ -4,6 +4,6 @@ export * from './PropertyService'
 export * from './expense';
 export * from './lease';
 export * from './maintenance';
-export * from './maintenance-dataservice';
+export * from './MaintenanceService';
 export * from './property';
 export * from './tenant';

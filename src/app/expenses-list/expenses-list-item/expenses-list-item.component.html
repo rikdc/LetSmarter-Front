@@ -1,0 +1,22 @@
+<tr>
+
+  <td>{{expense.recipient}}</td>
+  <td>
+    <p>{{expense.additionalNotes}}</p>
+  </td>
+  <td>{{expense.amount}}</td>
+  <td>{{expense.dueDate}}</td>
+  <td>
+    <div class="right-align">
+      <!-- Dropdown Trigger -->
+      <a materialize="dropdown" class='dropdown-button' href='#' data-activates="expense_dropdown"><i class="material-icons right">more_vert</i></a>
+
+      <!-- Dropdown Structure -->
+      <ul id="expense_dropdown" class='dropdown-content'>
+        <li><a (click)="editExpense(expense)">Edit</a></li>
+        <li><a (click)="removeExpense(expense)">Delete</a></li>
+      </ul>
+    </div>
+  </td>
+
+</tr>

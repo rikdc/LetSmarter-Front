@@ -7,8 +7,10 @@
     <div class="row" *ngIf="expenses.length == 0">
       <p>You have no recorded expenses. Add them here to track your spending.</p>
     </div>
-    <a (click)="addNew()" class="btn-floating btn-large waves-effect waves-light btn modal-trigger"><i class="material-icons">add</i></a>
 
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+      <a (click)="addNew()" class="btn-floating btn-large waves-effect waves-light btn modal-trigger"><i class="material-icons">add</i></a>
+    </div>
     <p>
       {{total}} records</p>
     <table class="bordered striped highlight">
@@ -21,7 +23,7 @@
           <th></th>
         </tr>
       </thead>
-      <tr *ngFor="let expense of expenses | async | paginate: { id: 'server', itemsPerPage: 15, currentPage: page, totalItems: total }">
+      <tr *ngFor="let expense of expenses | async | paginate: { id: 'server', itemsPerPage: 15, currentPage: page, totalItems: total }; let i = index">
         <td>{{expense.recipient}}</td>
         <td>
           <p>{{expense.additionalNotes}}</p>
@@ -31,15 +33,16 @@
         <td>
           <div class="right-align">
             <!-- Dropdown Trigger -->
-            <a materialize="dropdown" class='dropdown-button' href='#' data-activates='dropdown1'><i class="material-icons right">more_vert</i></a>
+            <a materialize="dropdown" class='dropdown-button' href='#' [attr.data-activates]="'expense_menu_' + expense.id"><i class="material-icons right">more_vert</i></a>
 
             <!-- Dropdown Structure -->
-            <ul id='dropdown1' class='dropdown-content'>
+            <ul [attr.id]="'expense_menu_' + expense.id" class='dropdown-content'>
               <li><a (click)="editExpense(expense)">Edit</a></li>
               <li><a (click)="removeExpense(expense)">Delete</a></li>
             </ul>
           </div>
         </td>
+
       </tr>
     </table>
     <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
@@ -47,7 +50,8 @@
 </div>
 <hr />
 <!-- Modal Trigger -->
-<a materialize="leanModal" [materializeParams]="[{dismissible: false}]" class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+<a materialize="leanModal" [materializeParams]="[{dismissible: false}]" class="waves-effect waves-light btn modal-trigger"
+  href="#modal1">Modal</a>
 <!-- Modal Structure -->
 <div id="modal1" class="modal">
   <div class="modal-content">

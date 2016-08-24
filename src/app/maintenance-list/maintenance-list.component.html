@@ -1,3 +1,51 @@
-<p>
-  maintenance-list works!
-</p>
+<div class="ibox" *ngIf="maintenance">
+  <div class="ibox-title">
+    <h5>Maintenance</h5>
+  </div>
+  <app-maintenance-form [maintenance]="selectedMaintenance" (onCancel)="onCancel()" (onSave)="addExpense()"></app-maintenance-form>
+  <div class="ibox-content">
+    <div class="row" *ngIf="maintenance.length == 0">
+      <p>You have no recorded maintenance requests. Add them here to track your spending.</p>
+    </div>
+
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+      <a (click)="addNew()" class="btn-floating btn-large waves-effect waves-light btn"><i class="material-icons">add</i></a>
+    </div>
+    <p>
+      {{total}} records</p>
+    <table class="bordered striped highlight">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Property</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tr *ngFor="let record of maintenance | paginate: { id: 'server', itemsPerPage: 15, currentPage: page, totalItems: total }">
+        <td>{{record.recipient}}</td>
+        <td>
+          <p>{{record.additionalNotes}}</p>
+        </td>
+        <td>{{record.amount}}</td>
+        <td>{{record.dueDate}}</td>
+        <td></td>
+        <td>
+          <div class="right-align">
+            <!-- Dropdown Trigger -->
+            <a materialize="dropdown" class='dropdown-button' href='#' data-activates='dropdown1'><i class="material-icons right">more_vert</i></a>
+
+            <!-- Dropdown Structure -->
+            <ul id='dropdown1' class='dropdown-content'>
+              <li><a (click)="editExpense(expense)">Edit</a></li>
+              <li><a (click)="removeExpense(expense)">Delete</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
+  </div>
+</div>

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { Property, Maintenance, PropertyService } from '../shared';
+import { Property, Maintenance } from '../shared';
 import { ConfigService } from './config.service';
 
 @Injectable()

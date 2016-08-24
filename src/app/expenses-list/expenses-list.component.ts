@@ -3,6 +3,7 @@ import { Observable, Observer } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { ExpenseFormComponent }     from './expense-form';
+import { ExpensesListItemComponent }     from './expenses-list-item';
 
 import { ExpensesService, PropertyService, Property, Expense, ConfigService } from '../shared/'
 import {MaterializeDirective} from "angular2-materialize";
@@ -11,7 +12,7 @@ import {MaterializeDirective} from "angular2-materialize";
   selector: 'app-expenses-list',
   templateUrl: 'expenses-list.component.html',
   styleUrls: ['expenses-list.component.css'],
-  providers: [ExpensesService, PropertyService, ConfigService, ExpenseFormComponent],
+  providers: [ExpensesService, ConfigService, ExpenseFormComponent, ExpensesListItemComponent],
   directives: [MaterializeDirective]
 })
 export class ExpensesListComponent implements OnInit {

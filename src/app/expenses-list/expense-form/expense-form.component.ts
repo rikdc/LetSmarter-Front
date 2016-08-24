@@ -8,7 +8,7 @@ import { Expense, Property } from '../../shared/';
   selector: 'app-expense-form',
   templateUrl: 'expense-form.component.html',
   styleUrls: ['expense-form.component.scss'],
-  directives: [ FORM_DIRECTIVES, DatePicker]
+  directives: [ FORM_DIRECTIVES, DatePicker],
 })
 export class ExpenseFormComponent implements OnInit {
 

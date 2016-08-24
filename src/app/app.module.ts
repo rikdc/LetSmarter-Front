@@ -26,6 +26,8 @@ import { TenantDetailsComponent } from './tenants-list/tenant-details';
 
 import {PaginatePipe, PaginationControlsCmp, PaginationService} from 'ng2-pagination';
 import {MaterializeDirective} from "angular2-materialize";
+import { MaintenanceFormComponent } from './maintenance-list/maintenance-form/maintenance-form.component';
+import { ExpensesListItemComponent } from './expenses-list/expenses-list-item/expenses-list-item.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,7 @@ import {MaterializeDirective} from "angular2-materialize";
     TenantDetailsComponent,
     ScheduleComponent,
     MaintenanceListComponent,
-    PaginatePipe, PaginationControlsCmp, MaterializeDirective
+    PaginatePipe, PaginationControlsCmp, MaterializeDirective, MaintenanceFormComponent, ExpensesListItemComponent
   ],
   providers: [
     PropertyService, ExpensesService, MaintenanceService, ConfigService, PaginationService, TenantsService
