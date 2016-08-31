@@ -3,12 +3,14 @@
     <a href="#!" class="brand-logo"><i class="material-icons">cloud</i>Ls ;)</a>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a routerLink="/dashboard" routerLinkActive="active">Properties</a></li>
-      <li><a routerLink="/expenses" routerLinkActive="active">Expenses</a></li>
-      <li><a routerLink="/maintenance" routerLinkActive="active">Maintenance</a></li>
-      <li><a routerLink="/tenants" routerLinkActive="active">Tenants</a></li>
-      <li><a routerLink="/reports" routerLinkActive="active">Reports</a></li>
-      <li><a routerLink="/account" routerLinkActive="active">Account</a></li>
+      <li><a *ngIf="authenticated" routerLink="/dashboard" routerLinkActive="active">Properties</a></li>
+      <li><a *ngIf="authenticated" routerLink="/expenses" routerLinkActive="active">Expenses</a></li>
+      <li><a *ngIf="authenticated" routerLink="/maintenance" routerLinkActive="active">Maintenance</a></li>
+      <li><a *ngIf="authenticated" routerLink="/tenants" routerLinkActive="active">Tenants</a></li>
+      <li><a *ngIf="authenticated" routerLink="/reports" routerLinkActive="active">Reports</a></li>
+      <li><a *ngIf="authenticated" routerLink="/account" routerLinkActive="active">Account</a></li>
+      <li><a *ngIf="!authenticated" routerLink="/login" >Log In</a></li>
+      <li><a *ngIf="authenticated" (click)="logout()">Log Out</a></li>
     </ul>
     <ul class="side-nav" id="mobile-demo">
       <li><a href="sass.html">Sass</a></li>

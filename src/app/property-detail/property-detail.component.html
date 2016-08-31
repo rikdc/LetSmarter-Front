@@ -6,18 +6,7 @@
       <li>
         <div class="collapsible-header active"><i class="material-icons">filter_drama</i>About</div>
         <div class="collapsible-body">
-
-
-            <div>
-              <label>Id: </label>{{property.id}}</div>
-            <div>
-              <label>Name: </label>
-              <input [(ngModel)]="property.addressLine1name" placeholder="name" />
-            </div>
-            <p>
-              <button (click)="goBack()">Back</button>
-            </p>
-
+          <app-property-form [property]="property"></app-property-form>
         </div>
       </li>
       <li>
@@ -30,6 +19,13 @@
         <div class="collapsible-header"><i class="material-icons">filter_drama</i>Lease Schedule</div>
         <div class="collapsible-body">
           <app-lease-schedule [lease]="property.currentLease"></app-lease-schedule>
+        </div>
+      </li>
+      <li>
+
+        <div class="collapsible-header"><i class="material-icons">filter_drama</i>All Leases</div>
+        <div class="collapsible-body">
+          <app-leases [property]="property"></app-leases>
         </div>
       </li>
     </ul>

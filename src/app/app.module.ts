@@ -1,22 +1,27 @@
 import { NgModule }       from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
+import { enableProdMode, provide } from '@angular/core';
+import { Http, XHRBackend } from '@angular/http';
 
 import { AppComponent }   from './app.component';
 import { routing }        from './app.routing';
 
 import { FormsModule }    from '@angular/forms'
 import {HttpModule} from "@angular/http";
-import {MdCardModule} from "@angular2-material/card";
-import {MdButtonModule} from "@angular2-material/button";
-import {MdIconModule} from "@angular2-material/icon";
-import {SampleComponent} from "./sample/sample.component";
 
-import { PropertyService, ExpensesService, MaintenanceService, ConfigService }  from './shared';
+import { AUTH_PROVIDERS, AuthConfig, tokenNotExpired } from 'angular2-jwt';
 
-import { PropertyListComponent } from './property-list/';
-import { PropertyFormComponent } from './property-form/';
+import { Auth } from './auth/auth.service';
+import { AuthGuard } from './auth/auth.guard';
+import { AuthHttp, AuthenticationConnectionBackend } from './shared/authhttp.service';
+
+import { PropertyService, ExpensesService, MaintenanceService, ConfigService, LeaseService }  from './shared';
+
+import { PropertyListComponent, PropertyFormComponent } from './property-list/';
 import { PropertyTenantsListComponent } from './property-tenants-list';
-import { ScheduleComponent } from './property-detail/schedule';
+import { LeasesComponent, ScheduleComponent } from './property-detail/';
+
 import { MaintenanceListComponent } from './maintenance-list';
 
 import { ExpenseFormComponent } from './expenses-list';
@@ -25,14 +30,15 @@ import { TenantsService, TenantsListComponent } from './tenants-list';
 import { TenantDetailsComponent } from './tenants-list/tenant-details';
 
 import {PaginatePipe, PaginationControlsCmp, PaginationService} from 'ng2-pagination';
+
 import {MaterializeDirective} from "angular2-materialize";
 import { MaintenanceFormComponent } from './maintenance-list/maintenance-form/maintenance-form.component';
 import { ExpensesListItemComponent } from './expenses-list/expenses-list-item/expenses-list-item.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    SampleComponent,
     PropertyListComponent,
     PropertyFormComponent,
     PropertyTenantsListComponent,
@@ -41,10 +47,23 @@ import { ExpensesListItemComponent } from './expenses-list/expenses-list-item/ex
     TenantDetailsComponent,
     ScheduleComponent,
     MaintenanceListComponent,
-    PaginatePipe, PaginationControlsCmp, MaterializeDirective, MaintenanceFormComponent, ExpensesListItemComponent
+    MaintenanceFormComponent,
+    PaginatePipe,
+    PaginationControlsCmp,
+    MaterializeDirective, LeasesComponent
   ],
   providers: [
-    PropertyService, ExpensesService, MaintenanceService, ConfigService, PaginationService, TenantsService
+    PropertyService, 
+    ExpensesService, 
+    MaintenanceService, 
+    ConfigService, 
+    PaginationService,
+    LeaseService,
+    TenantsService,
+    { provide: XHRBackend, useClass: AuthenticationConnectionBackend },
+    Auth,
+    AuthHttp,
+    AuthGuard
   ],
   imports: [
     BrowserModule,
@@ -52,6 +71,7 @@ import { ExpensesListItemComponent } from './expenses-list/expenses-list-item/ex
     FormsModule,
     routing
   ],
+  entryComponents: [AppComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

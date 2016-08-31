@@ -1,4 +1,4 @@
-<div class="ibox">
+<div class="ibox" *ngIf="expenses">
   <div class="ibox-title">
     <h5>Expenses</h5>
   </div>
@@ -23,7 +23,7 @@
           <th></th>
         </tr>
       </thead>
-      <tr *ngFor="let expense of expenses | async | paginate: { id: 'server', itemsPerPage: 15, currentPage: page, totalItems: total }; let i = index">
+      <tr *ngFor="let expense of expenses | paginate: { id: 'server', itemsPerPage: 15, currentPage: page, totalItems: total }; let i = index">
         <td>{{expense.recipient}}</td>
         <td>
           <p>{{expense.additionalNotes}}</p>
@@ -46,19 +46,5 @@
       </tr>
     </table>
     <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
-  </div>
-</div>
-<hr />
-<!-- Modal Trigger -->
-<a materialize="leanModal" [materializeParams]="[{dismissible: false}]" class="waves-effect waves-light btn modal-trigger"
-  href="#modal1">Modal</a>
-<!-- Modal Structure -->
-<div id="modal1" class="modal">
-  <div class="modal-content">
-    <h4>Modal Header</h4>
-    <p>A bunch of text</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
   </div>
 </div>

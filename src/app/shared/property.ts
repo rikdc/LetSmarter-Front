@@ -5,6 +5,10 @@ export class Property {
     addressLine1: string;
 
     tenants: Tenant[];
+
+    numberOfBathrooms: number;
+    numberOfBedrooms: number;
+    
 }
 
 

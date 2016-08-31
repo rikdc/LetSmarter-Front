@@ -10,6 +10,7 @@
       "mobile": false
     }
   ],
+  "scripts": [ "../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js" ],
   "addons": [],
   "packages": [],
   "e2e": {

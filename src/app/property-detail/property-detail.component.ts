@@ -5,6 +5,7 @@ import { PropertyService, Property }        from '../shared/';
 import { Subscription }                 from 'rxjs/Subscription';
 
 import { PropertyTenantsListComponent } from '../property-tenants-list';
+import { PropertyFormComponent } from '../property-list/';
 
 import { ScheduleComponent } from './schedule';
 

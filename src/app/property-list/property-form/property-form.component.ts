@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { Property, ConfigService } from '../shared/'
+import { Property, ConfigService } from '../../shared/';
 
 @Component({
   selector: 'app-property-form',
@@ -20,15 +20,6 @@ export class PropertyFormComponent implements OnInit {
   @Output() onCancel = new EventEmitter();
 
   ngOnInit() {
-    /*this.route.params.forEach((params: Params) => {
-      if (params['id'] !== undefined) {
-        let id = +params['id'];
-        this.dataService.getProperty(id)
-          .subscribe(property => this.property = property);
-      } else {
-        this.property = new Property();
-      }
-    });*/
   }
 
   save() {

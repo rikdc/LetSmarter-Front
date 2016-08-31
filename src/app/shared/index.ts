@@ -7,3 +7,4 @@ export * from './maintenance';
 export * from './MaintenanceService';
 export * from './property';
 export * from './tenant';
+export * from './LeaseService';

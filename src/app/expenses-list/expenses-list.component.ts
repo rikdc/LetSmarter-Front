@@ -22,7 +22,7 @@ export class ExpensesListComponent implements OnInit {
     private propertyService: PropertyService
   ) { }
 
-  private expenses: Observable<Expense[]>;
+  private expenses: Expense[];
   private selectedExpense; Expense;
   public total: number;
   public page: number;
@@ -47,10 +47,9 @@ export class ExpensesListComponent implements OnInit {
 
   getPage(page: number) {
     this.page = page;
-    this.expenses = this.dataService.getExpenses(page);
-
-    this.expenses.subscribe(result => {
+    this.dataService.getExpenses(page).subscribe(result => {
       this.total = this.dataService.total;
+      this.expenses = result;
     });
   }
 
@@ -63,7 +62,7 @@ export class ExpensesListComponent implements OnInit {
   }
 
   addExpense() {
-    console.log('Saving expense');
+    console.log('Saving expense', this.selectedExpense);
     this.dataService.save(this.selectedExpense)
       .subscribe(() => {
         this.selectedExpense = null;
@@ -72,14 +71,13 @@ export class ExpensesListComponent implements OnInit {
   }
 
   editExpense(expense) {
-    console.log(expense);
     this.selectedExpense = expense;
   }
 
   removeExpense(expense) {
     if (confirm("Are you sure you want to delete this expense?")) {
       this.dataService.remove(expense).subscribe(result => {
-          
+          this.expenses = this.expenses.filter((e) => e.id != expense.id);
       });
     }
   }

@@ -9,35 +9,48 @@ import { ExpenseDetailsComponent }     from './expense-details';
 import { MaintenanceListComponent } from './maintenance-list';
 import { TenantsListComponent } from './tenants-list';
 
+import { AuthComponent } from './auth/auth.component'
+import { AuthGuard } from './auth/auth.guard'
+
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   {
     path: 'dashboard',
-    component: PropertyListComponent
+    component: PropertyListComponent,
+    canActivate: [AuthGuard] 
+  },
+  {
+    path: 'login',
+    component: AuthComponent
   },
   {
     path: 'property/:id',
-    component: PropertyDetailComponent
+    component: PropertyDetailComponent,
+    canActivate: [AuthGuard] 
   },
   {
     path: 'expenses',
-    component: ExpensesListComponent
+    component: ExpensesListComponent,
+    canActivate: [AuthGuard] 
   },
   {
     path: 'expenses/:id',
-    component: ExpenseDetailsComponent
+    component: ExpenseDetailsComponent,
+    canActivate: [AuthGuard] 
   },
   {
     path: 'maintenance',
-    component: MaintenanceListComponent
+    component: MaintenanceListComponent,
+    canActivate: [AuthGuard] 
   },
     {
     path: 'tenants',
-    component: TenantsListComponent
+    component: TenantsListComponent,
+    canActivate: [AuthGuard] 
   },
 ];
 

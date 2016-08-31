@@ -1,5 +1,6 @@
 import { Injectable }    from '@angular/core';
-import { Headers, Response, Http } from '@angular/http';
+import { Response } from '@angular/http';
+import { AuthHttp } from './authhttp.service';
 
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Observable';
@@ -9,42 +10,13 @@ import 'rxjs/add/operator/do';
 
 import { Property, Expense, PropertyService } from '../shared';
 import { ConfigService } from './config.service';
+import { BaseService } from './base.service';
 
 @Injectable()
 /// <reference path="data.service.ts" />
-export class ExpensesService {
-  protected _baseUrl = 'app/';  // URL to web api
-
-  private headers: Headers;
-
-  constructor(protected http: Http, protected configService: ConfigService) {
-
-    this._baseUrl = configService.getApiURI();
-
-    this.headers = new Headers();
-    this.headers.append('Content-Type', 'application/json');
-    this.headers.append('Accept', 'application/json');
-  }
-
-  protected handleObservableError(error: any) {
-    var applicationError = error.headers.get('Application-Error');
-    var serverError = error.json();
-    var modelStateErrors: string = '';
-
-    console.log(error);
-
-    if (!serverError.type) {
-
-      for (var key in serverError) {
-        if (serverError[key]) {
-          modelStateErrors += serverError[key] + '\n';
-        }
-      }
-    }
-
-    modelStateErrors = modelStateErrors = '' ? null : modelStateErrors;
-
-    return Observable.throw(applicationError || modelStateErrors || 'Server error');
+export class ExpensesService extends BaseService {
+  constructor(protected http: AuthHttp, protected configService: ConfigService) {
+    super(http, configService);
   }
 
   public total: number;
@@ -72,7 +44,7 @@ export class ExpensesService {
   }
 
   private post(expense: Expense): Observable<Expense> {
-    return this.http.post(this._baseUrl + 'expenses/', JSON.stringify(expense), { headers: this.headers })
+    return this.http.post(this._baseUrl + 'expenses/', JSON.stringify(expense))
       .map((res: Response) => {
         return res.json();
       })
@@ -80,10 +52,7 @@ export class ExpensesService {
   }
 
   private put(expense: Expense) {
-    return this.http.put(this._baseUrl + 'expenses/', JSON.stringify(expense), { headers: this.headers })
-      .map((res: Response) => {
-        return res.json();
-      })
+    return this.http.put(this._baseUrl + 'expenses/', JSON.stringify(expense))
       .catch(this.handleObservableError);
   }
 }

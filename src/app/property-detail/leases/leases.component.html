@@ -1,0 +1,22 @@
+<div *ngIf="leases">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Period</th>
+        <th>Rent</th>
+        <th>Deposit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let lease of leases | paginate: { itemsPerPage: 15, currentPage: page }">
+        <td>{{lease.startDate | date:'MMM d'}} - {{lease.endDate | date:'MMM d'}}</td>
+        <td>{{lease.rent | currency:'USD'}}</td>
+        <td>{{lease.deposit | currency:'USD'}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pull-right">
+    <pagination-controls (pageChange)="page = $event" #api></pagination-controls>
+  </div>
+</div>
