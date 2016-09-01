@@ -10,6 +10,9 @@ export const ROUTES: Routes = [
   { path: '',      component: Home },
   { path: 'home',  component: Home },
   { path: 'about', component: About },
+  { 
+    path: 'property', loadChildren: () => System.import('./+property') 
+  },
   {
     path: 'detail', loadChildren: () => System.import('./+detail')
   },

@@ -1,0 +1,39 @@
+<div *ngIf="property">
+  <div class="row">
+    <div class="input-field col s6">
+      <input [(ngModel)]="property.addressLine1" placeholder="Address 1" type="text" />
+      <label>Address</label>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="input-field col s6">
+      <input [(ngModel)]="property.addressLine2" placeholder="Address (cont)" type="text" />
+      <label>Address (cont): </label>
+    </div>
+    <div class="input-field col s6">
+      <input [(ngModel)]="property.postcode" placeholder="Postcode/Zip" type="text" />
+      <label>Postcode: </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s3">
+      <select materialize="material_select" [(ngModel)]="property.numberOfBathrooms" placeholder="Postcode/Zip">
+        <option value="0">0</option>
+      </select>
+      <label>Bathrooms</label>
+    </div>
+    <div class="input-field col s3">
+      <select materialize="material_select" [(ngModel)]="property.numberOfBedrooms" placeholder="Postcode/Zip">
+        <option value="0">1</option>
+      </select>
+      <label>Bedrooms</label>
+    </div>
+  </div>
+  <div class="row">
+    <p>
+      <button (click)="cancel()">Cancel</button> <button (click)="save()">Save</button>
+    </p>
+  </div>
+</div>
