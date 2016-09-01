@@ -1,4 +1,5 @@
 import { Injectable }    from '@angular/core';
+import { Response } from '@angular/http';
 import { AppHttp } from './app.http';
 
 import 'rxjs/add/operator/toPromise';
@@ -7,11 +8,22 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 
+import { Property } from './+property/property';
+
 @Injectable()
 export class AppData {
-    protected _baseUrl = '';  // URL to web api
+    protected _baseUrl = 'http://localhost:8232/api/';  // URL to web api
 
     constructor(protected http: AppHttp) {
+    }
+
+    getProperties(): Observable<Property[]> {
+        return this.http.get(this._baseUrl + 'property')
+        .map((res: Response) => {
+            console.log(res);
+            return res.json();
+        })
+        .catch(this.handleObservableError);
     }
 
     protected handleObservableError(error: any) {

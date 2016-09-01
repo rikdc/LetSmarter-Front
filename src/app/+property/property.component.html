@@ -1,25 +1,29 @@
-<div class="row">
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
   <a class="btn-floating btn-large waves-effect waves-light red right" (click)="addNew()"><i class="material-icons">add</i></a>
 </div>
 <div class="row">
-  <ul class="properties collection">
-    <li *ngFor="let property of properties" class="collection-item">
-      <a (click)="onSelect(property)">{{property.addressLine1}}</a>
-      <div class="secondary-content">
-        <!-- Dropdown Trigger -->
-        <a materialize="dropdown" class='dropdown-button' href='#' data-activates='dropdown1'><i class="material-icons right">more_vert</i></a>
+    <div class="card">
+      <div class="card-content">
 
-        <!-- Dropdown Structure -->
-        <ul id='dropdown1' class='dropdown-content'>
-          <li><a (click)="onSelect(property)">Edit</a></li>
-          <li><a (click)="deleteProperty(property)">Delete</a></li>
-        </ul>
+        <table class="bordered striped">
+          <tr *ngFor="let property of properties" class="collection-item">
+            <td><a (click)="onSelect(property)">{{property.addressLine1}}</a></td>
+            <td>
+              <a materialize="dropdown" class='dropdown-button' href='#' data-activates='dropdown1'><i class="material-icons right">more_vert</i></a>
+
+              <!-- Dropdown Structure -->
+              <ul id='dropdown1' class='dropdown-content'>
+                <li><a (click)="onSelect(property)">Edit</a></li>
+                <li><a (click)="deleteProperty(property)">Delete</a></li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+
       </div>
-
-    </li>
-  </ul>
-
-  <hr />
-
-  <app-property-form (onSave)="saveProperty()" (onCancel)="cancelAddNew()" [property]="selectedProperty"></app-property-form>
+      <div class="card-action">
+        <a href="#">This is a link</a>
+        <app-property-form (onSave)="saveProperty()" (onCancel)="cancelAddNew()" [property]="selectedProperty"></app-property-form>
+      </div>
+    </div>
 </div>

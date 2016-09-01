@@ -20,9 +20,9 @@ export class PropertyList implements OnInit {
   private selectedProperty: Property;
 
   ngOnInit() {
-    /*this.dataService.getProperties().subscribe(p => {
+    this.dataService.getProperties().subscribe(p => {
       this.properties = p;
-    });*/
+    });
   };
 
   onSelect(property: Property) {

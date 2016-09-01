@@ -1,6 +1,10 @@
 export class Tenant {
 }
 
+export class Lease {
+    
+}
+
 export class Property {
     id: number;
     addressLine1: string;
