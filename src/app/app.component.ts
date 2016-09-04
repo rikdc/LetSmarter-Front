@@ -16,56 +16,57 @@ import { AppState } from './app.service';
     './app.style.css'
   ],
   template: `
-  
+    
     <header>
-    <nav class="top-nav blue darken-3">
-    <div class="container">
-      <span>
-        <a [routerLink]=" ['./'] ">
-          Index
-        </a>
-      </span>
-      |
-      <span>
-        <a [routerLink]=" ['./home'] ">
-          Home
-        </a>
-      </span>
-      |
-      <span>
-        <a [routerLink]=" ['./property'] ">
-          Properties
-        </a>
-      </span>
-      |
-      <span>
-        <a [routerLink]=" ['./detail'] ">
-          Detail
-        </a>
-      </span>
-      |
-      <span>
-        <a [routerLink]=" ['./about'] ">
-          About
-        </a>
-      </span>
-      </div>
-    </nav>
+      <nav class="top-nav blue darken-3"></nav>
+        <ul class="side-nav fixed grey lighten-3">
+              <li>
+                <a [routerLink]=" ['./'] ">
+                  Index
+                </a>
+              </li>
+              <li>
+                <a [routerLink]=" ['./home'] ">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a [routerLink]=" ['./property'] ">
+                  Properties
+                </a>
+              </li>
+              <li>
+                <a [routerLink]=" ['./expenses'] ">
+                  Expenses
+                </a>
+              </li>
+              <li>
+                <a [routerLink]=" ['./detail'] ">
+                  Detail
+                </a>
+              </li>
+              <li>
+                <a [routerLink]=" ['./about'] ">
+                  About
+                </a>
+              </li>
+              </ul>
 
-    <div class="container">
-
-    </div>
     </header>
 
       <main>
-        <div class="container">
-          <div class="row">
-            <div class="col s12 m9 l10">
-              <router-outlet></router-outlet>
-              </div>
-            </div>
+        <div class="row">
+          <div class="col s3">
+            <!-- Grey navigation panel -->
+          </div>
+
+          <div class="col s9">
+            <div class="content"><router-outlet></router-outlet></div>
+          </div>
         </div>
       </main>
+      <footer class="page-footer">
+      </footer>
 
 
     <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>

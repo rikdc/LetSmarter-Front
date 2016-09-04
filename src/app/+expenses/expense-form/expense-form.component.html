@@ -1,0 +1,28 @@
+<div *ngIf="expense">
+  <form materialize class="col s12">
+    <div class="row">
+      <div>
+        <label>Recipient: </label>
+        <input [(ngModel)]="expense.recipient" placeholder="name" name="recipient" />
+      </div>
+      <div>
+        <label>Amount: </label>
+        <input [(ngModel)]="expense.amount" placeholder="Amount" name="amount" />
+      </div>
+      <div>
+        <label>Property:</label>
+          <materialSelect [options]="selectOptions" [initialValue]="expense.propertyId" (modelChange)="onSelectValChange($event)"></materialSelect>
+
+
+      </div>
+      <div>
+        <label>Due Date: </label>
+        <datepicker [(ngModel)]="expense.dueDate"></datepicker>
+      </div>
+      <p class="right">
+        <button (click)="cancel()" class="waves-effect waves-light btn">Cancel</button>
+        <button (click)="save()" class="waves-effect waves-light btn">Save</button>
+      </p>
+    </div>
+  </form>
+</div>

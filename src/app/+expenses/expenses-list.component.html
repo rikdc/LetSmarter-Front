@@ -1,0 +1,49 @@
+<div class="ibox" *ngIf="expenses">
+  <div class="ibox-title">
+    <h5>Expenses</h5>
+  </div>
+  <app-expense-form [expense]="selectedExpense" [properties]="properties" (onCancel)="onCancel()" (onSave)="addExpense()"></app-expense-form>
+  <div class="ibox-content">
+    <div class="row" *ngIf="expenses.length == 0">
+      <p>You have no recorded expenses. Add them here to track your spending.</p>
+    </div>
+
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+      <a (click)="addNew()" class="btn-floating btn-large waves-effect waves-light btn modal-trigger"><i class="material-icons">add</i></a>
+    </div>
+
+    <table class="bordered striped highlight">
+      <thead>
+        <tr>
+          <th>Recipient</th>
+          <th>Category</th>
+          <th>Amount</th>
+          <th>Due Date</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tr *ngFor="let expense of expenses | paginate: { id: 'server', itemsPerPage: 15, currentPage: page, totalItems: total }; let i = index">
+        <td>{{expense.recipient}}</td>
+        <td>
+          <p>{{expense.additionalNotes}}</p>
+        </td>
+        <td>{{expense.amount}}</td>
+        <td>{{expense.dueDate}}</td>
+        <td>
+          <div class="right-align">
+            <!-- Dropdown Trigger -->
+            <a materialize="dropdown" class='dropdown-button' href='#' [attr.data-activates]="'expense_menu_' + expense.id"><i class="material-icons right">more_vert</i></a>
+
+            <!-- Dropdown Structure -->
+            <ul [attr.id]="'expense_menu_' + expense.id" class='dropdown-content'>
+              <li><a (click)="editExpense(expense)">Edit</a></li>
+              <li><a (click)="removeExpense(expense)">Delete</a></li>
+            </ul>
+          </div>
+        </td>
+
+      </tr>
+    </table>
+    <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
+  </div>
+</div>

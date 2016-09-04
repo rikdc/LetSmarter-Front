@@ -1,38 +1,39 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 
+import { AppData } from './../../../app.data';
 import { Lease, Property } from '../../property';
 
 @Component({
   selector: 'app-leases',
   templateUrl: 'leases.component.html'
 })
-export class LeasesComponent implements OnInit {
-
-  constructor() { }
+export class LeasesComponent {
 
   private _property: Property;
   public leases: Lease[];
   public total: number;
   public page: number;
 
+  constructor(
+    private dataService: AppData
+  ) { }
+
   @Input()
   set property(property: Property) {
     this._property = property;
-/*
-    this.leaseService.getLeasesForProperty(property.id, 1)
+    if (!property) {
+      return;
+    }
+
+    this.dataService.getLeasesForProperty(property.id, 1)
       .subscribe(l => {
-        this.total = this.leaseService.total;
+        this.total = 10;//this.dataService.total;
         this.leases = l;
       });
-*/
   }
+
   get property() {
     return this._property;
   }
-
-  ngOnInit() {
-
-  }
-
 }

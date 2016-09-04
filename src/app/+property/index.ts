@@ -9,7 +9,7 @@ import { PropertyDetail } from './property-detail/property-detail.component';
 import { PropertyForm } from './property-form/property-form.component';
 import { PropertyList } from './property.component';
 
-import { PaginatePipe, PaginationControlsCmp, PaginationService } from 'ng2-paginate';
+import { SharedModule } from '../app.shared';
 
 import { AppHttp } from '../app.http';
 import { AppData } from '../app.data';
@@ -24,20 +24,19 @@ export const routes = [
 @NgModule({
   declarations: [
     // Components / Directives/ Pipes
-    PaginatePipe,
-    PaginationControlsCmp,
     LeasesComponent,
     PropertySchedule,
     PropertyDetail,
     PropertyForm,
-    PropertyList
+    PropertyList,
   ],
   providers: [
-      AppHttp, AppData, PaginationService
+      AppHttp, AppData
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    SharedModule,
     RouterModule.forChild(routes),
   ]
 })
