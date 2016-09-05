@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
-import { MaterializeDirective } from "angular2-materialize";
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -34,8 +33,7 @@ const APP_PROVIDERS = [
     App,
     About,
     Home,
-    NoContent,
-    MaterializeDirective,
+    NoContent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

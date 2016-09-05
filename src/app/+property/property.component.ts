@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { Router } from '@angular/router';
 
+import { MaterializeDirective } from "angular2-materialize";
+import { PaginationService } from 'ng2-paginate';
+
 import { Property } from './property'
 import { AppData } from '../app.data';
 
 @Component({
   selector: 'app-property',
-  templateUrl: 'property.component.html'
+  templateUrl: 'property.component.html',
+  providers: [PaginationService, MaterializeDirective]
 })
 export class PropertyList implements OnInit {
 
@@ -37,7 +41,7 @@ export class PropertyList implements OnInit {
     this.selectedProperty = null;
   }
 
-  saveProperty(property) {  
+  saveProperty(property) {
     this.dataService.save(this.selectedProperty)
       .subscribe(p => {
         this.properties.push(p);
@@ -46,15 +50,15 @@ export class PropertyList implements OnInit {
 
   deleteProperty(property) {
     this.dataService.remove(property).subscribe(
-            success => {
-                            var index = this.properties.indexOf(property);
-                            if (index > -1) {
-                              this.properties.splice(index);
-                            }
-                        },
-              error => console.log(error));
+      success => {
+        var index = this.properties.indexOf(property);
+        if (index > -1) {
+          this.properties.splice(index);
+        }
+      },
+      error => console.log(error));
 
-/*
-        .subscribe();*/
+    /*
+            .subscribe();*/
   }
 }

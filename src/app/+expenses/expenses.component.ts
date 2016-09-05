@@ -2,20 +2,20 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Observer }         from 'rxjs';
 import { Router }                       from '@angular/router';
 
+import { MaterializeDirective }         from "angular2-materialize";
+import { PaginationService }            from 'ng2-paginate';
+
 import { ExpenseFormComponent }         from './expense-form';
-import { ExpensesListItemComponent }    from './expenses-list-item';
 
 import { Property }                     from './../+property/property';
 
 import { Expense } from './expense';
 import { AppData } from '../app.data';
 
-import { PaginationService } from 'ng2-paginate';
-
 @Component({
   selector: 'app-expenses-list',
   templateUrl: 'expenses-list.component.html',
-  providers: [ ExpenseFormComponent, ExpensesListItemComponent, PaginationService ]
+  providers: [ ExpenseFormComponent, PaginationService, MaterializeDirective ]
 })
 export class Expenses implements OnInit {
 

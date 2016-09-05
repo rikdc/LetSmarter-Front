@@ -7,8 +7,3 @@ span.active {
   background-color: gray;
 }
 
-@media (min-width: 991px) {
-  main {
-    padding-left: 120px;
-  }
-}
