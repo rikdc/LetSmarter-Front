@@ -41,6 +41,11 @@ import { AppState } from './app.service';
                 </a>
               </li>
               <li>
+                <a [routerLink]=" ['./maintenance'] ">
+                  Maintenance
+                </a>
+              </li>
+              <li>
                 <a [routerLink]=" ['./detail'] ">
                   Detail
                 </a>

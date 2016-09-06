@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { Tenant } from '../../property';
+import { Tenant } from '../../../app.models';
 
 @Component({
   selector: 'app-property-tenants-list',

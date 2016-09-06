@@ -2,7 +2,7 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 
 import { AppData } from './../../../app.data';
-import { Lease, Property } from '../../property';
+import { Lease, Property } from '../../../app.models';
 
 @Component({
   selector: 'app-leases',

@@ -16,7 +16,10 @@ export const ROUTES: Routes = [
     path: 'expenses', loadChildren: () => System.import('./+expenses') 
   },
   {
+    path: 'maintenance', loadChildren: () => System.import('./+maintenance')
+  },
+  {
     path: 'detail', loadChildren: () => System.import('./+detail')
   },
-  { path: '**',    component: NoContent },
+  { path: '**',    component: NoContent }
 ];

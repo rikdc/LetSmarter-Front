@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { MaterializeDirective } from "angular2-materialize";
 import { PaginationService } from 'ng2-paginate';
 
-import { Property } from './property'
+import { Property } from '../app.models';
 import { AppData } from '../app.data';
 
 @Component({

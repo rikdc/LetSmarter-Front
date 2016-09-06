@@ -1,12 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Maintenance, Property } from '../../shared/';
+import { Maintenance, Property } from '../../app.models';
 
 @Component({
   selector: 'app-maintenance-form',
-  templateUrl: 'maintenance-form.component.html',
-  styleUrls: ['maintenance-form.component.scss']
+  templateUrl: 'maintenance-form.component.html'
 })
-export class MaintenanceFormComponent implements OnInit {
+export class MaintenanceForm implements OnInit {
 
   @Input() maintenance: Maintenance;
 

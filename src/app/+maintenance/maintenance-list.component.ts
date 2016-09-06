@@ -2,19 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { Router } from '@angular/router';
 
-import { MaintenanceFormComponent } from './maintenance-form';
-import { MaintenanceService, Maintenance } from '../shared/';
+import { PaginationService } from 'ng2-paginate';
+
+import { MaintenanceForm } from './maintenance-form';
+import { Maintenance } from '../app.models';
+import { AppData } from '../app.data';
 
 @Component({
   selector: 'app-maintenance-list',
   templateUrl: 'maintenance-list.component.html',
-  styleUrls: ['maintenance-list.component.css'],
-  providers: [MaintenanceService, MaintenanceFormComponent]
+  providers: [AppData, MaintenanceForm, PaginationService]
 })
-export class MaintenanceListComponent implements OnInit {
+export class MaintenanceList implements OnInit {
   constructor(
     private router: Router,
-    private dataService: MaintenanceService
+    private dataService: AppData
   ) { }
 
   private maintenance: Maintenance[];

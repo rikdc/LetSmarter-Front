@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 
-import { Property, Lease, Expense } from './+property/property';
+import { Property, Lease, Expense, Maintenance } from './app.models';
 
 @Injectable()
 export class AppData {
@@ -68,21 +68,29 @@ export class AppData {
         return this.delete(expense.id, 'expenses');
     }
 
+    getMaintenance(): Observable<Maintenance[]> {
+        return this.http.get(this._baseUrl + 'maintenance')
+            .map((res: Response) => {
+                return res.json();
+            })
+            .catch(this.handleObservableError);
+    }
+
     private delete(primaryKey: number, path: string) {
         return this.http.delete(this._baseUrl + path + '/' + primaryKey);
     }
 
     private post(model: any, path: string): Observable<Expense> {
         return this.http.post(this._baseUrl + path + '/', JSON.stringify(model))
-        .map((res: Response) => {
-            return res.json();
-        })
-        .catch(this.handleObservableError);
+            .map((res: Response) => {
+                return res.json();
+            })
+            .catch(this.handleObservableError);
     }
 
     private put(model: any, path: string) {
         return this.http.put(this._baseUrl + path + '/', JSON.stringify(model))
-        .catch(this.handleObservableError);
+            .catch(this.handleObservableError);
     }
 
     protected handleObservableError(error: any) {

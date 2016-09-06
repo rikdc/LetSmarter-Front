@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { Property } from '../property';
+import { Property } from '../../app.models';
 import { Subscription } from 'rxjs/Subscription';
 
 import { PropertyForm } from '../property-form/';

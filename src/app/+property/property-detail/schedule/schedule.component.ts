@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PaginationService } from 'ng2-paginate';
 
-import { Property, Lease } from '../../property';
+import { Lease, Property } from '../../../app.models';
 
 @Component({
   selector: 'app-lease-schedule',

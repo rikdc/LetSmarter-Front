@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { Property } from '../property';
+import { Property } from '../../app.models';
 
 @Component({
   selector: 'app-property-form',
