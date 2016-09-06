@@ -37,25 +37,53 @@ export class AppData {
 
     getLeasesForProperty(propertyId: number, page: number): Observable<Lease[]> {
         return this.http.get(this._baseUrl + 'property/' + propertyId + '/leases/?pageIndex=' + page + "&pageSize=15")
-        .do((res: any) => {
-            //this.total = res.json().total
-        })
-        .map((res: Response) => {
-            return res.json().results;
-        })
-        .catch(this.handleObservableError);
+            .do((res: any) => {
+                //this.total = res.json().total
+            })
+            .map((res: Response) => {
+                return res.json().results;
+            })
+            .catch(this.handleObservableError);
     };
 
     getExpenses(page: number): Observable<Expense[]> {
         return this.http.get(this._baseUrl + 'expenses?pageIndex=' + page)
-        .do((res: any) => {
-            this.total = res.json().total
-        })
+            .do((res: any) => {
+                this.total = res.json().total
+            })
+            .map((res: Response) => {
+                return res.json().results;
+            })
+            .catch(this.handleObservableError);
+    };
+
+    saveExpense(expense: Expense): Observable<Expense> {
+        if (expense.id) {
+            return this.put(expense, 'expenses');
+        }
+        return this.post(expense, 'expenses');
+    }
+
+    removeExpense(expense: Expense): Observable<Response> {
+        return this.delete(expense.id, 'expenses');
+    }
+
+    private delete(primaryKey: number, path: string) {
+        return this.http.delete(this._baseUrl + path + '/' + primaryKey);
+    }
+
+    private post(model: any, path: string): Observable<Expense> {
+        return this.http.post(this._baseUrl + path + '/', JSON.stringify(model))
         .map((res: Response) => {
-            return res.json().results;
+            return res.json();
         })
         .catch(this.handleObservableError);
-    };
+    }
+
+    private put(model: any, path: string) {
+        return this.http.put(this._baseUrl + path + '/', JSON.stringify(model))
+        .catch(this.handleObservableError);
+    }
 
     protected handleObservableError(error: any) {
         let applicationError = error.headers.get('Application-Error');

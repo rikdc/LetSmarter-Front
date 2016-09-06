@@ -65,7 +65,7 @@ export class Expenses implements OnInit {
 
   addExpense() {
     console.log('Saving expense', this.selectedExpense);
-    this.dataService.save(this.selectedExpense)
+    this.dataService.saveExpense(this.selectedExpense)
       .subscribe(() => {
         this.selectedExpense = null;
         this.getPage(this.page);
@@ -78,7 +78,7 @@ export class Expenses implements OnInit {
 
   removeExpense(expense) {
     if (confirm("Are you sure you want to delete this expense?")) {
-      this.dataService.remove(expense).subscribe(result => {
+      this.dataService.removeExpense(expense).subscribe(result => {
           this.expenses = this.expenses.filter((e) => e.id != expense.id);
       });
     }

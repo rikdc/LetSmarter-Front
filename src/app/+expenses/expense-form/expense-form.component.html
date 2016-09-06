@@ -11,13 +11,14 @@
       </div>
       <div>
         <label>Property:</label>
-          <materialSelect [options]="selectOptions" [initialValue]="expense.propertyId" (modelChange)="onSelectValChange($event)"></materialSelect>
-
-
+        <select [(ngModel)]="expense.propertyId" materialize="material_select"
+          [materializeSelectOptions]="options" name="expense.propertyId">
+                  <option value="" disabled selected>Select option ..</option>
+                  <option *ngFor="let option of properties" [value]="option.id">{{option.addressLine1}}</option>
+              </select>
       </div>
       <div>
         <label>Due Date: </label>
-        <datepicker [(ngModel)]="expense.dueDate"></datepicker>
       </div>
       <p class="right">
         <button (click)="cancel()" class="waves-effect waves-light btn">Cancel</button>
